@@ -3,7 +3,8 @@ import express,{Request, Response} from 'express';
 import cors from 'cors'
 import 'dotenv/config'
 import connectDB from "./db/connect";
-import userRoutes from './routes/users'
+import userRoutes from './routes/users';
+import authRoutes from './routes/auth';
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors())
 
 
 app.use('/api/v1',userRoutes)
+app.use('/api/v1',authRoutes)
 app.get('/api/health', async(req: Request, res: Response) => {
 res.json({message: "App working"})
 })
