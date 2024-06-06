@@ -29,4 +29,8 @@ res.status(200).json({userId: user._id})
     }
 }
 
-export default {handleLogin}
+const handleToken = async(req:Request, res:Response) => {
+    res.status(200).send({userId: req.userId})
+}
+
+export default {handleLogin, handleToken}
