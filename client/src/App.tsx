@@ -1,6 +1,7 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import Register from "./pages/Register";
+import AppContextProvider from "./context/AppContext";
 
 type AppProps = {};
 
@@ -16,7 +17,11 @@ const App = ({}: AppProps) => {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <AppContextProvider>
+      <RouterProvider router={router} />
+    </AppContextProvider>
+  );
 };
 
 export default App;

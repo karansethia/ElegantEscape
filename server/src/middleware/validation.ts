@@ -3,6 +3,7 @@ import {type Request, Response, NextFunction} from "express";
 
 const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
+    console.log("validation errors here")
     console.log(errors);
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
