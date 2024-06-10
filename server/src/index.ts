@@ -26,6 +26,7 @@ res.json({message: "App working"})
 })
 
 app.listen(3000,async () => {
+
     await connectDB(process.env.MONGO_URI as string);
     console.log("database connected")
 })
