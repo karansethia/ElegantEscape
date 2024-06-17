@@ -1,5 +1,6 @@
 import {useForm} from "react-hook-form";
 import {useSignin} from "../hooks/user-hooks";
+import {Link} from "react-router-dom";
 
 export type SigninFormData = {
   email: string;
@@ -55,11 +56,19 @@ const Signin = () => {
           <span className="text-red-500">{errors.password.message}</span>
         )}
       </label>
-      {status !== "success" ? (
-        <button type="submit">Login</button>
-      ) : (
-        <button type="button">Loading...</button>
-      )}
+      <div className="flex flex-row items-center justify-between">
+        {status !== "success" ? (
+          <button type="submit">Login</button>
+        ) : (
+          <button type="button">Loading...</button>
+        )}
+        <span>
+          Not registered ?
+          <Link to="/register" className="underline">
+            Create account now
+          </Link>
+        </span>
+      </div>
     </form>
   );
 };

@@ -33,4 +33,10 @@ const handleToken = async(req:Request, res:Response) => {
     res.status(200).send({userId: req.userId})
 }
 
-export default {handleLogin, handleToken}
+const handleLogout = async(req:Request, res: Response) => {
+    console.log("inside logout")
+    res.clearCookie('jwt_token', {httpOnly: true, path: '/'})
+    return res.status(204).json({"message":"Logged Out"});
+}
+
+export default {handleLogin, handleToken, handleLogout}

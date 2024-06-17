@@ -7,6 +7,13 @@ export default {
       padding: {
         md: "5rem",
       }
+    },
+    fontFamily: {
+      poppins: ["Poppins","sans-serif"],
+      rouge: ["Rouge Script", "cursive"]
+    },
+    backgroundImage: {
+      hero: "url('./assets/border.png')"
     }
   },
   plugins: [],

@@ -8,11 +8,11 @@ type AppContext = {
 const AppContext = React.createContext<AppContext | undefined>(undefined);
 
 const AppContextProvider = ({children}: {children: React.ReactNode}) => {
-  const {isError} = useValidate();
-  console.log(isError);
+  const {isSuccess} = useValidate();
+  console.log(isSuccess);
 
   return (
-    <AppContext.Provider value={{isLoggedIn: !isError}}>
+    <AppContext.Provider value={{isLoggedIn: isSuccess}}>
       {children}
     </AppContext.Provider>
   );

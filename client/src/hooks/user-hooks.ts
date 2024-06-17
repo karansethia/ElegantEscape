@@ -3,9 +3,12 @@ import {RegisterFormType} from "../pages/Register";
 import {axiosReq} from "../utils/axios";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {SigninFormData} from "../pages/Signin";
+import {useQueryClient} from "@tanstack/react-query";
+import {toast} from "sonner";
 
 export const useRegister = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const request = async (data: RegisterFormType) => {
     const response = await axiosReq.post(
       "/register",
@@ -17,13 +20,15 @@ export const useRegister = () => {
   const {mutate, error, isPending, isSuccess} = useMutation({
     mutationFn: request,
     retry: 1,
-    onSuccess: () => {
+    onSuccess: async () => {
+      toast.success("Registered successfully");
+      await queryClient.invalidateQueries({queryKey: ["token"]});
       console.log("success");
       navigate("/");
     },
   });
   if (error) {
-    //todo: show toast
+    toast.error("Something went wring");
   }
   if (isSuccess) {
     console.log("Registered");
@@ -33,6 +38,7 @@ export const useRegister = () => {
 
 export const useSignin = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const request = async (data: SigninFormData) => {
     const response = await axiosReq.post(
       "/login",
@@ -44,8 +50,9 @@ export const useSignin = () => {
   const {mutate, isError, status} = useMutation({
     mutationFn: request,
     retry: 0,
-    onSuccess: () => {
-      console.log("logged in");
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({queryKey: ["token"]});
+      toast.success("Logged in successfully");
       navigate("/");
     },
   });
@@ -60,11 +67,34 @@ export const useValidate = () => {
 
     return response.data;
   };
-  const {isError} = useQuery({
+  const {isSuccess} = useQuery({
     queryKey: ["token"],
     queryFn: request,
     retry: false,
   });
 
-  return {isError};
+  return {isSuccess};
+};
+
+export const useLogout = () => {
+  const queryClient = useQueryClient();
+  // const navigate = useNavigate();
+  const request = async () => {
+    const response = await axiosReq.post("/logout", {withCredentials: true});
+    return response;
+  };
+
+  const {mutate, isError} = useMutation({
+    mutationFn: request,
+    retry: 0,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({queryKey: ["token"]});
+      toast.success("Logged out successfully");
+      // navigate("/");
+    },
+  });
+  if (isError) {
+    //todo show toast
+  }
+  return {mutate};
 };
