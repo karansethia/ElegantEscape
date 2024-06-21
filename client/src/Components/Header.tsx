@@ -1,4 +1,4 @@
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import logo from "../assets/logo.png";
 import {useAppContext} from "../context/AppContext";
 import {useLogout} from "../hooks/user-hooks";
@@ -42,7 +42,10 @@ const Header = ({}: HeaderProps) => {
         <NavLink to="/">Vacation Spots</NavLink>
         <NavLink to="/">Book Guide</NavLink>
       </nav>
-      <img src={logo} alt="Elegant Escapes" className="w-56" />
+      <Link to="/">
+        <img src={logo} alt="Elegant Escapes" className="w-56" />
+      </Link>
+
       {!isLoggedIn && (
         <nav className="flex flex-row items-center gap-4 font-poppins text-slate-600 text-xs">
           <NavLink to="/">About Us</NavLink>

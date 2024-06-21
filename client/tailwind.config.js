@@ -14,6 +14,9 @@ export default {
     },
     backgroundImage: {
       hero: "url('./assets/border.png')"
+    },
+    backgroundSize: {
+      "custom": "25rem"
     }
   },
   plugins: [],

@@ -55,6 +55,9 @@ export const useSignin = () => {
       toast.success("Logged in successfully");
       navigate("/");
     },
+    onError: () => {
+      toast.error("Could not login, Try again");
+    },
   });
 
   return {mutate, isError, status};
