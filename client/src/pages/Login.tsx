@@ -21,7 +21,7 @@ const Login = ({}: LoginProps) => {
     mutate(data);
   };
   return (
-    <div className="flex flex-row justify-between items-center h-full">
+    <div className="flex flex-row justify-between items-start h-full">
       <div className="w-[45%] flex items-center justify-end me-10">
         <img src={signin} className="w-4/6" />
       </div>
@@ -37,7 +37,7 @@ const Login = ({}: LoginProps) => {
             Email
             <input
               type="email"
-              className="border rounded w-full py-2 border-slate-500 my-2 px-2 font-normal invalid:border-red-500"
+              className="border rounded w-full py-2 border-slate-500 my-2 px-2 font-normal text-xs invalid:border-red-500"
               {...register("email", {
                 required: "This field is required",
               })}
@@ -50,7 +50,7 @@ const Login = ({}: LoginProps) => {
             Password
             <input
               type="password"
-              className="border rounded w-full py-2 border-slate-500 my-2 px-2 font-normal invalid:border-red-500"
+              className="border rounded w-full py-2 border-slate-500 my-2 px-2 font-normal text-xs invalid:border-red-500"
               {...register("password", {
                 required: "This field is required",
                 minLength: {
