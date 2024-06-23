@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 const handleLogin = async(req:Request, res:Response) => {
+    console.log("inside login")
     const {email, password} = req.body;
     try{
         const user = await User.findOne({email: email});
