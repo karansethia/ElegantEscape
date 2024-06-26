@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 import connectDB from "./db/connect";
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
+import manageHotelRoutes from './routes/manage-hotels'
 import path from "path";
 import {v2 as cloudinary} from 'cloudinary'
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, "../../client/dist/")))
 
 app.use('/api/v1',userRoutes)
 app.use('/api/v1',authRoutes)
+app.use('/api/v1', manageHotelRoutes)
 app.get('/api/health', async(req: Request, res: Response) => {
 res.json({message: "App working"})
 })
