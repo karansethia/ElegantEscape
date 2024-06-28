@@ -1,5 +1,5 @@
 import {useForm, type SubmitHandler} from "react-hook-form";
-import {Link} from "react-router-dom";
+
 import {useRegister} from "../hooks/user-hooks";
 
 import signin from "../assets/signin.png";

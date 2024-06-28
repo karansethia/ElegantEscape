@@ -2,9 +2,10 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import Register from "./pages/Register";
 import AppContextProvider from "./context/AppContext";
-import Signin from "./pages/Signin";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import AddHotel from "./pages/AddHotel";
 
 type AppProps = {};
 
@@ -18,6 +19,7 @@ const App = ({}: AppProps) => {
         {path: "search", element: <span>Search Page</span>},
         {path: "register", element: <Register />},
         {path: "signin", element: <Login />},
+        {path: "add-hotel", element: <AddHotel />}, //todo: add route auth
       ],
     },
   ]);
