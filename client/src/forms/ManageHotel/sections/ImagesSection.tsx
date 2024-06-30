@@ -9,7 +9,7 @@ const ImagesSection = ({}: ImagesSectionProps) => {
   } = useFormContext<HotelFormData>();
   return (
     <div>
-      <h2 className="text-2xl mb-3 font-bold">Images</h2>
+      <h2 className="text-2xl mb-3">Images</h2>
       <div className="border rounded p-4 flex flex-col gap-4">
         <input
           type="file"

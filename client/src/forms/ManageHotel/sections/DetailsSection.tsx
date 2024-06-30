@@ -10,7 +10,9 @@ const DetailsSection = ({}: DetailsSectionProps) => {
   } = useFormContext<HotelFormData>();
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-3xl font-bold mb-3">Add Hotel</h1>
+      <h1 className="text-3xl font-light mb-3 font-poppins tracking-wider">
+        Add Hotel
+      </h1>
       <label className="text-gray-700 text-sm font-poppins flex-1">
         Name
         <input

@@ -9,7 +9,7 @@ const GuestSection = ({}: GuestSectionProps) => {
   } = useFormContext<HotelFormData>();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-3">Guest</h2>
+      <h2 className="text-2xl mb-3">Guest</h2>
       <div className="grid grid-cols-2 p-6 gap-5 bg-slate-300">
         <label className="text-slate-700 text-sm font-semibold">
           Adults

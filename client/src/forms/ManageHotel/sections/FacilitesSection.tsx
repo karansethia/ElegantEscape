@@ -10,7 +10,7 @@ const FacilitesSection = ({}: FacilitesSectionProps) => {
   } = useFormContext<HotelFormData>();
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-2">Facilities</h2>
+      <h2 className="text-2xl mb-2">Facilities</h2>
       <div className="grid grid-cols-5 gap-3">
         {hotelFacilities.map((facility) => (
           <label className="flex gap-2 text-sm" key={facility}>

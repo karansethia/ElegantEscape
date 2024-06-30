@@ -30,7 +30,7 @@ const ManageHotelForm = ({}: ManageHotelFormProps) => {
   return (
     <FormProvider {...form}>
       <form
-        className="flex flex-col gap-8"
+        className="flex flex-col gap-8 border shadow-md bg-white  mx-auto m-6 p-10 font-poppins"
         onSubmit={form.handleSubmit(submitHandler)}
       >
         <DetailsSection />

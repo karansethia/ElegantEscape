@@ -13,7 +13,8 @@ export default {
       rouge: ["Rouge Script", "cursive"]
     },
     backgroundImage: {
-      hero: "url('./assets/border.png')"
+      hero: "url('./assets/border.png')",
+      flowers: "url('./assets/bg.png')"
     },
     backgroundSize: {
       "custom": "25rem"
