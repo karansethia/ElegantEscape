@@ -85,7 +85,7 @@ const DetailsSection = ({}: DetailsSectionProps) => {
         Star Rating
         <select
           className="border rounded w-full py-2 border-slate-500 my-2 px-2 font-normal text-xs invalid:border-red-500"
-          {...register("startRating", {
+          {...register("starRating", {
             required: "This field is required",
           })}
         >
@@ -98,8 +98,8 @@ const DetailsSection = ({}: DetailsSectionProps) => {
             </option>
           ))}
         </select>
-        {errors.startRating && (
-          <span className="text-red-500">{errors.startRating.message}</span>
+        {errors.starRating && (
+          <span className="text-red-500">{errors.starRating.message}</span>
         )}
       </label>
     </div>

@@ -1,6 +1,7 @@
 import express from "express";
 import multer from 'multer'
 import {verifyToken} from "../middleware/verify";
+import manageHotels from "../controllers/manage-hotels";
 
 const router = express.Router();
 
@@ -12,6 +13,6 @@ const upload = multer({
     }
 })
 
-router.post('/manage-hotel',verifyToken,upload.array("imageFiles",6),()=>{})
+router.post('/manage-hotel',verifyToken,upload.array("imageFiles",6),manageHotels.handleRegistration)
 
 export default router

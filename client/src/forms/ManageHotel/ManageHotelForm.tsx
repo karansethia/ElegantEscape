@@ -12,20 +12,43 @@ export type HotelFormData = {
   description: string;
   type: string;
   pricePerNight: number;
-  startRating: number;
+  starRating: number;
   facilities: string[];
   imageFiles: FileList;
   adultCount: number;
   childCount: number;
 };
 
-type ManageHotelFormProps = {};
+type ManageHotelFormProps = {
+  onSave: (data: FormData) => void;
+  isLoading: boolean;
+};
 
-const ManageHotelForm = ({}: ManageHotelFormProps) => {
+const ManageHotelForm = ({onSave, isLoading}: ManageHotelFormProps) => {
   const form = useForm<HotelFormData>();
-  const submitHandler = (formData: HotelFormData) => {
+  const submitHandler = (formDataJson: HotelFormData) => {
     //todo: call api
-    console.log(formData);
+    const formData = new FormData();
+    formData.append("name", formDataJson.name);
+    formData.append("city", formDataJson.city);
+    formData.append("country", formDataJson.country);
+    formData.append("description", formDataJson.description);
+    formData.append("type", formDataJson.type);
+    formData.append("pricePerNight", formDataJson.pricePerNight.toString());
+    formData.append("starRating", formDataJson.starRating.toString());
+    formData.append("adultCount", formDataJson.adultCount.toString());
+    formData.append("childCount", formDataJson.childCount.toString());
+    formDataJson.facilities.forEach((fc, index) => {
+      formData.append(`facilities[${index}]`, fc);
+    });
+    Array.from(formDataJson.imageFiles).forEach((file) => {
+      formData.append("imageFiles", file);
+    });
+    for (const value of formData.values()) {
+      console.log(value);
+    }
+
+    onSave(formData);
   };
   return (
     <FormProvider {...form}>
@@ -41,9 +64,10 @@ const ManageHotelForm = ({}: ManageHotelFormProps) => {
         <span className="flex justify-end">
           <button
             type="submit"
-            className="bg-blue-600 text-white font-bold hover:bg-blue-500 text-xl p-2"
+            className="bg-blue-600 disabled:bg-slate-600 text-white font-bold hover:bg-blue-500 text-xl p-2"
+            disabled={isLoading}
           >
-            Save
+            {!isLoading ? "Save" : "Loading"}
           </button>
         </span>
       </form>
