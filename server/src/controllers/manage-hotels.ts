@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
 import {v2 as cloudinary} from 'cloudinary';
 import Hotel, {HotelType} from "../models/hotel";
+import {uploadImages} from "../utils";
 
 const handleRegistration = async (req: Request, res: Response) => {
     try {
@@ -24,15 +25,28 @@ const handleRegistration = async (req: Request, res: Response) => {
         res.status(500).json({message: "Something went wrong"})
     }
 }
-async function uploadImages(imageFiles: Express.Multer.File[]) {
-    const uploadPromises = imageFiles.map(async (image) => {
-        const b64 = Buffer.from(image.buffer).toString("base64");
-        let dataURI = "data:" + image.mimetype + ";base64," + b64;
-        const res = await cloudinary.uploader.upload(dataURI);
-        return res.url;
-    });
-
-    const imageUrls = await Promise.all(uploadPromises);
-    return imageUrls;
+const handleGetHotels = async(req:Request, res: Response) => {
+    try{
+    const hotels = await Hotel.find({userId: req.userId});
+        console.log(hotels)
+    res.json(hotels)
+    }catch (e) {
+        console.log("Error searching hotel")
+        console.log(e.message);
+        res.status(500).json({message: "Something went wrong"})
+    }
 }
-export default {handleRegistration}
+
+const handleGetHotelDetails = async (req: Request, res: Response) => {
+    const id = req.params.id.toString();
+    try{
+        const hotel = await Hotel.findOne({_id: id, userId: req.userId});
+        res.json(200).json(hotel)
+    }catch (e) {
+        console.log("Error searching hotel")
+        console.log(e.message);
+        res.status(500).json({message: "Something went wrong"})
+    }
+}
+
+export default {handleRegistration, handleGetHotels, handleGetHotelDetails}
