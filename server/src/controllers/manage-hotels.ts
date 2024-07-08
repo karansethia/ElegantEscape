@@ -29,7 +29,7 @@ const handleGetHotels = async(req:Request, res: Response) => {
     try{
     const hotels = await Hotel.find({userId: req.userId});
         console.log(hotels)
-    res.json(hotels)
+        res.json(hotels)
     }catch (e) {
         console.log("Error searching hotel")
         console.log(e.message);
@@ -41,7 +41,7 @@ const handleGetHotelDetails = async (req: Request, res: Response) => {
     const id = req.params.id.toString();
     try{
         const hotel = await Hotel.findOne({_id: id, userId: req.userId});
-        res.json(200).json(hotel)
+        res.status(200).json(hotel)
     }catch (e) {
         console.log("Error searching hotel")
         console.log(e.message);

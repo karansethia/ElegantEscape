@@ -28,7 +28,7 @@ export const useRegister = () => {
     },
   });
   if (error) {
-    toast.error("Something went wring");
+    toast.error("Something went wrong");
   }
   if (isSuccess) {
     console.log("Registered");
